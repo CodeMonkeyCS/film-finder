@@ -22,10 +22,10 @@ struct ContentView: View {
                 Image(systemName: "movieclapper.fill")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
-                Text("Film Finder")
+                Text("FILM FINDER")
                     .font(.title)
                     .fontWeight(.bold)
-                    .frame(width: 300.0, height: 25.0)
+                    .frame(width: 200.0, height: 25.0)
                 Image(systemName: "movieclapper.fill")
                     .imageScale(.large)
                     .foregroundStyle(.tint)
@@ -52,9 +52,10 @@ struct ContentView: View {
                 Image(systemName: "chevron.down")
             }
             .buttonStyle(.borderedProminent)
-            .tint(.accentColor)
+            .tint(.secondary)
             .controlSize(.regular)
             .cornerRadius(5)
+            .frame(width: UIScreen.main.bounds.width * 0.8)
             
             Button(action: {
                 
@@ -65,7 +66,7 @@ struct ContentView: View {
                 .frame(width: 140.0, height: 25.0)
             })
             .buttonStyle(.borderedProminent)
-            .tint(.orange)
+            .tint(.accentColor)
             .controlSize(.extraLarge)
             .cornerRadius(20)
             
@@ -86,7 +87,7 @@ struct ContentView: View {
                     Image(systemName: "hand.thumbsup.fill")
                 })
                 .buttonStyle(.borderedProminent)
-                .tint(.accentColor)
+                .tint(.green)
                 .controlSize(.regular)
                 .cornerRadius(5)
                 
@@ -96,7 +97,7 @@ struct ContentView: View {
                     Image(systemName: "hand.thumbsdown.fill")
                 })
                 .buttonStyle(.borderedProminent)
-                .tint(.accentColor)
+                .tint(.red)
                 .controlSize(.regular)
                 .cornerRadius(5)
             })
