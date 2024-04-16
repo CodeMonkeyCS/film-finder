@@ -12,7 +12,17 @@ struct Movies: Codable {
 }
 
 struct MovieInfo: Codable {
-    let id: String
+    var id: Int;
+    var original_language: String;
+    var original_title: String;
+    var overview: String;
+    var release_date: String;
+    var poster_path: String;
+    var popularity: Double;
+    var title: String;
+    var video: Bool;
+    var vote_average: Double;
+    var vote_count: Int;
 }
 
 class FilmFinder {
@@ -37,14 +47,30 @@ class FilmFinder {
         request.httpMethod = "GET"
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-          guard let data = data else {
-            print(String(describing: error))
-            return
-          }
-          print(String(data: data, encoding: .utf8)!)
+            guard let data = data else {
+                print(String(describing: error))
+                return
+            }
+            guard let httpResponse = response as? HTTPURLResponse,
+                (200...299).contains(httpResponse.statusCode) else {
+                //self.handleServerError(response)
+                return
+            }
+            if let mimeType = httpResponse.mimeType, mimeType == "text/html",
+                let data = data,
+                let string = String(data: data, encoding: .utf8) {
+                DispatchQueue.main.async {
+//                    let movieInfo = try JSONDecoder().decode(MovieInfo.self, from: data)
+//                    self.webView.loadHTMLString(string, baseURL: url)
+                }
+            }
+            
+            print(String(data: data, encoding: .utf8)!)
         }
 
+        
         task.resume()
+        //let movieInfo = try JSONDecoder().decode(MovieInfo.self, from: data)
 
 //        let wrapper = try JSONDecoder().decode(Wrapper.self, from: data)
 //        return wrapper.items[0]
